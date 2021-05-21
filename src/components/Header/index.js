@@ -1,4 +1,5 @@
 import Logout from '../../assets/log-out.svg';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 
@@ -8,10 +9,10 @@ export function Header() {
       <nav className="nickname">
         <p>#martinsgabriel1956</p>
       </nav>
-      <button className="logout">
+      <Link to="/" className="logout">
         <p>Sair</p>
         <img src={Logout} alt="Sair" />
-      </button>
+      </Link>
     </header>
   );
 }

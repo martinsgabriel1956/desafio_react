@@ -1,0 +1,21 @@
+:root {
+  --bg-color: #030202;
+  --primary-color: #FFCE00;
+  --alert-color: #EB2D2D;
+  --input-text: #535353;
+  --white-color: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background: var(--bg-color);
+  font-family: Helvetica, sans-serif;
+}

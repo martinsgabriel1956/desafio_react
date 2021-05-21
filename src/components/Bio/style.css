@@ -51,7 +51,7 @@
 
 .bio {
   padding-top: 2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 13rem;
 }
 
 .user-info h2,
@@ -63,11 +63,12 @@
 
 .statics {
   background: #525252;
-  padding: 1.25rem 6rem;
-
+  padding: 1.25rem 4rem;
+  width: 100%;
+  
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .data {
@@ -88,12 +89,15 @@
     top: -8%;
     left: calc(42% - 10px);
   }
-
+  
   .user-info p {
     font-size: 14px;
   }
-
+  
   .statics {
     padding: 1.25rem .75rem;
+  }
+  .bio {
+    padding-bottom: 6rem;
   }
 }

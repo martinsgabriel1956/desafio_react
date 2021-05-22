@@ -10,7 +10,7 @@ import '../styles/pages/Repositories.css'
 export function Repositories() {
   return (
     <>
-      <Header />
+      <Header type="52 Repositórios" />
       <Repository />
       <Repository />
       <Repository />

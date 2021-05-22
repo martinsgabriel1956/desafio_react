@@ -5,7 +5,7 @@ import { Follow } from "../components/Follow";
 export function Followers() {
   return (
     <>
-    <Header />
+    <Header type="143 Seguidores" />
     <Follow />
     <Follow />
     <Follow />

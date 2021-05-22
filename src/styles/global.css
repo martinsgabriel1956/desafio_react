@@ -19,3 +19,12 @@ body {
   background: var(--bg-color);
   font-family: Helvetica, sans-serif;
 }
+
+h1, h2, h3, p {
+  color: #FFF;
+}
+
+p {
+  font-weight: lighter;
+  line-height: 1.4rem;
+}

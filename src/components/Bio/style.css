@@ -19,12 +19,6 @@
   left: 45%;
 }
 
-.user-info p,
-.bio p {
-  font-weight: lighter;
-  line-height: 1.4rem;
-}
-
 .user-info h2,
 .bio h2 {
   position: relative;

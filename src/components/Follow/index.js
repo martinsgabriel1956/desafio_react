@@ -11,7 +11,7 @@ export function Follow() {
     <div className="follow-container">
       <img className="avatar" src={Avatar} alt="Usuário" />
       <p>#martinsgabriel1956</p>
-      <Link to="/dashboard">
+      <Link to="/user/profile">
         <img src={ArrowRight} alt="" />
       </Link>
     </div>

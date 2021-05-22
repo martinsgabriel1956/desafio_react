@@ -17,7 +17,7 @@ export function Routes() {
         <Route path="/repositories" component={Repositories} />
         <Route path="/followers" component={Followers} />
         <Route path="/followings" component={Followings} />
-        <Route path="/user/profile" component={UserProfile} />
+        <Route path="/profile" component={UserProfile} />
       </Switch>
     </BrowserRouter>
   );

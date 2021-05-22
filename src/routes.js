@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { Repositories } from './pages/Repositories';
 import { Followers } from './pages/Followers';
 import { Followings } from './pages/Followings';
+import { UserProfile } from './pages/UserProfile';
 
 export function Routes() {
   return (
@@ -16,6 +17,7 @@ export function Routes() {
         <Route path="/repositories" component={Repositories} />
         <Route path="/followers" component={Followers} />
         <Route path="/followings" component={Followings} />
+        <Route path="/user/profile" component={UserProfile} />
       </Switch>
     </BrowserRouter>
   );

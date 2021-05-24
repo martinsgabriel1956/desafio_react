@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import "../styles/pages/Home.css";
@@ -7,12 +9,16 @@ import { Footer } from "../components/Footer";
 
 import Logout from '../assets/log-out.svg';
 
+import { UserContext } from "../contexts/UserContext";
+
 export function Home() {
+  const {userData} = useContext(UserContext); 
+
   return (
     <>
       <header className="navbar">
         <nav className="nickname">
-          <p>#martinsgabriel1956</p>
+          <p>#{userData.login}</p>
         </nav>
         <Link to="/" className="logout">
           <p>Sair</p>

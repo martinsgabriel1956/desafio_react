@@ -28,22 +28,23 @@ export function Login() {
         `/${username}?access_token=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`
       );
       const res = req;
-      const reqFollowing = await api.get(
-        `/${username}/following?page=1&per_page=100&access_token=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`
-      );
       const reqFollowers = await api.get(
         `/${username}/followers?page=1&per_page=100&access_token=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`
+      );
+      
+      const reqFollowing = await api.get(
+        `/${username}/following?page=1&per_page=100&access_token=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`
       );
       const reqRepos = await api.get(
         `/${username}/repos?access_token=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`
       );
 
-      const NumberFollowers = parseFloat(reqFollowers.data.length);
       const NumberFollowing = parseFloat(reqFollowing.data.length);
+      const NumberFollowers = parseFloat(reqFollowers.data.length);
       const NumberRepos = parseFloat(reqRepos.data.length);
 
-      const AllFollowers = NumberFollowers;
-      const AllFollowing = NumberFollowing;
+      const AllFollowers = (NumberFollowers);
+      const AllFollowing = (NumberFollowing);
       const AllRepos = NumberRepos.data;
       console.log(AllRepos);
 

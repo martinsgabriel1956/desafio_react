@@ -7,9 +7,13 @@ import { Repositories } from './pages/Repositories';
 import { Followers } from './pages/Followers';
 import { Followings } from './pages/Followings';
 import { UserProfile } from './pages/UserProfile';
+import { UserContextProvider } from './contexts/UserContext';
+
+
 
 export function Routes() {
   return (
+    <UserContextProvider>
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Login} />
@@ -20,5 +24,6 @@ export function Routes() {
         <Route path="/profile" component={UserProfile} />
       </Switch>
     </BrowserRouter>
+    </UserContextProvider>
   );
 }

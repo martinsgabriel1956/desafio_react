@@ -1,17 +1,23 @@
 .repository-container {
-  padding: 2.5rem 1.5rem;
   background: #292929;
   border-bottom: 2px solid #7070705A;
+  text-decoration: none;
 }
-.repository-container > li >  h3 {
+
+.repository-container > li {
+  border-bottom: 2px solid #7070705A;
+  padding: 2rem 1.5rem;
+}
+
+.repository-container > li h3 {
   position: relative;
 }
 
-.repository-container > li > p {
+.repository-container > li p {
   padding-top: .25rem;
 }
 
-.repository-container > li > h3::before {
+.repository-container > li h3::before {
   content: '';
   width: 30px;
   height: 30px;

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useCallback} from "react";
+import React, { createContext, useState, useContext, useCallback, useEffect} from "react";
 
 export const UserContext = createContext();
 
@@ -10,7 +10,7 @@ export function UserContextProvider({ children }) {
   const login = useCallback(
     async function(username) {
       try {
-        const res = await fetch(`https://api.github.com/users/${username}?access_token=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`);
+        const res = await fetch(`https://api.github.com/users/${username}`);
 
         const dataUser = await res.json();
 
@@ -24,10 +24,22 @@ export function UserContextProvider({ children }) {
     },
     []
   )
+
+  useEffect(() => {
+    async function userLoggedSection() {
+      const username = localStorage.getItem('@username');
+
+      if(username) {
+        await login(username);
+      }
+    }
+
+    userLoggedSection();
+  }, [ login])
  
   return (
     <UserContext.Provider
-      value={{ login, data, error}}
+      value={{ login, data, error, setError}}
     >
       {children}
     </UserContext.Provider>

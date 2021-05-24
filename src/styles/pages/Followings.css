@@ -1,0 +1,49 @@
+.follow-container {
+  padding: 2.5rem 0;
+  background: #292929;
+  border-bottom: 1px solid #7070705A;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  position: relative;
+}
+
+.follow-container::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  background: #FFCE00;
+  border-radius: 8px;
+
+  position: absolute;
+  left: -30px;
+}
+
+.avatar {
+  width: 60px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+}
+
+.follow-container > img {
+  margin: 0 .25rem;
+}
+
+.follow-container > p {
+  margin: 0 1rem;
+  font-weight: bold;
+
+}
+
+.follow-container img:last-child {
+  width: 26px;
+  color: #FFF;
+}
+
+@media (max-width: 375px) {
+  .follow-container {
+    padding: 2.5rem 1rem;
+  }
+}

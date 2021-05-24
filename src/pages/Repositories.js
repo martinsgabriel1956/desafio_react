@@ -6,14 +6,10 @@ import { Footer } from "../components/Footer";
 
 import '../styles/pages/Repositories.css'
 
-
 export function Repositories() {
   return (
     <>
       <Header type="52 Repositórios" />
-      <Repository />
-      <Repository />
-      <Repository />
       <Repository />
       <Footer />
     </>

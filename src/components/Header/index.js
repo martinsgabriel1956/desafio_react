@@ -5,7 +5,7 @@ import ArrowLeft from "../../assets/arrow-left.svg";
 
 export function Header(props) {
   return (
-    <div className="repositories-container">
+    <div className="header-container">
       <Link to="/dashboard">
         <img src={ArrowLeft} alt="" />
       </Link>

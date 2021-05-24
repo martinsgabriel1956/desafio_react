@@ -4,36 +4,38 @@ import './style.css';
 import { UserContext } from "../../contexts/UserContext";
 
 export function Bio() {
-  const { userData } = useContext(UserContext); 
+  const { data } = useContext(UserContext); 
+
+  const { name, avatar_url, email, location, followers, following, public_repos, bio } = data;
 
   return (
     <main className="bio-container">
       <div className="user-info">
-        <img src={userData.avatar_url} alt="avatar" />
-        <h2>{userData.name}</h2>
-        <p>{userData.email}</p>
-        <p>{userData.location}</p>
+        <img src={avatar_url} alt="avatar" />
+        <h2>{name}</h2>
+        <p>{email}</p>
+        <p>{location}</p>
       </div>
       <div className="statics">
         <div className="data">
-          <h2>{userData.followers.number}</h2>
+          <h2>{followers}</h2>
           <p>Seguidores</p>
         </div>
         <div className="data">
-          <h2>{userData.followings.number}</h2>
-          <p>Seguidores</p>
+          <h2>{following}</h2>
+          <p>Seguindo</p>
         </div>
         <div className="data">
-          <h2>{userData.repos.number}</h2>
+          <h2>{public_repos}</h2>
           <p>Repos</p>
         </div>
       </div>
       <div className="bio">
         <h2>Bio</h2>
-        {userData.bio === "" ? (
+        {bio === "" ? (
           <p></p>
         ) : (
-          <p>{userData.bio}</p>
+          <p>{bio}</p>
         )}
       </div>
     </main>

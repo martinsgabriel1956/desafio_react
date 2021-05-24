@@ -12,13 +12,15 @@ import Logout from '../assets/log-out.svg';
 import { UserContext } from "../contexts/UserContext";
 
 export function Home() {
-  const {userData} = useContext(UserContext); 
+  const { data } = useContext(UserContext); 
+
+  const { login } = data;
 
   return (
     <>
       <header className="navbar">
         <nav className="nickname">
-          <p>#{userData.login}</p>
+          <p>#{login}</p>
         </nav>
         <Link to="/" className="logout">
           <p>Sair</p>

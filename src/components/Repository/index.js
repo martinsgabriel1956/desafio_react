@@ -1,26 +1,44 @@
-import React from 'react';
+import React, { useContext, useEffect, useState} from "react"
 
-import Star from '../../assets/star.svg';
-import Private from '../../assets/lock.svg';
-import Public from '../../assets/unlock.svg';
+import "./styles.css";
+import { UserContext } from "../../contexts/UserContext";
 
-import './styles.css'
+import Star from "../../assets/star.svg";
+import Private from "../../assets/lock.svg";
+import Public from "../../assets/unlock.svg";
 
 export function Repository() {
+  const { data } = useContext(UserContext);
+  const { repos_url } = data;
+  const [repos, setRepos] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(repos_url);
+      const json = await response.json();
+      setRepos(json);
+    }
+    fetchData();
+  }, [repos_url]);
+  
   return (
-    <div className="repository-container">
-      <h3>desafio_react</h3>
-      <p>Desafio React da Luby Software</p>
-      <div className="repository-info">
-      <div className="stars">
-        <img src={Star} alt="estrelas" />
-        <p>32</p>
-      </div>
-      <div className="repository-status">
-        <img src={Public} alt="" />
-        <img src={Private} alt="" />
-      </div>
-      </div>
-    </div>
-  )
+    <ul className="repository-container">
+      {repos.map((repo) => (
+        <li key={repo.id}>
+          <h3>{repo.name}</h3>
+          <p>Desafio React da Luby Software</p>
+          <div className="repository-info">
+            <div className="stars">
+              <img src={Star} alt="estrelas" />
+              <p>32</p>
+            </div>
+            <div className="repository-status">
+              <img src={Public} alt="" />
+              <img src={Private} alt="" />
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
 }

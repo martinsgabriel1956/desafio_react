@@ -7,80 +7,77 @@ import ArrowRight from "../assets/arrow-right.svg";
 import "../styles/pages/Login.css";
 
 import { UserContext } from "../contexts/UserContext";
-import { api } from "../services/api";
 
 export function Login() {
-  const { username, setUsername } = useContext(UserContext);
-  const { setUserData } = useContext(UserContext);
-
-  const [error, setError] = useState(false);
+  const [username, setUsername] = useState("");
   const [emptyInput, setEmptyInput] = useState(false);
 
+  const { login, error} = useContext(UserContext);
   const history = useHistory();
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     try {
-      setError(false);
       e.preventDefault();
-      setUsername(username);
-
-      const req = await api.get(
-        `/${username}?access_token=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`
-      );
-      const res = req;
-      const reqFollowers = await api.get(
-        `/${username}/followers?page=1&per_page=100&access_token=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`
-      );
-      
-      const reqFollowing = await api.get(
-        `/${username}/following?page=1&per_page=100&access_token=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`
-      );
-      const reqRepos = await api.get(
-        `/${username}/repos?access_token=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`
-      );
-
-      const NumberFollowing = parseFloat(reqFollowing.data.length);
-      const NumberFollowers = parseFloat(reqFollowers.data.length);
-      const NumberRepos = parseFloat(reqRepos.data.length);
-
-      const AllFollowers = (NumberFollowers);
-      const AllFollowing = (NumberFollowing);
-      const AllRepos = NumberRepos.data;
-      console.log(AllRepos);
-
-      if (res.status === 200) {
-        const dataUser = {
-          login: res.data.login,
-          name: res.data.name,
-          email: res.data.email,
-          avatar_url: res.data.avatar_url,
-          location: res.data.location,
-          bio: res.data.bio,
-          followers: {
-            number: NumberFollowers,
-            info: AllFollowers,
-          },
-          following: {
-            number: NumberFollowing,
-            info: AllFollowing,
-          },
-          repos: {
-            number: NumberRepos,
-            info: AllRepos,
-          },
-        };
-        setUserData(dataUser);
+        login(username);
+        setUsername("");
         history.push("/dashboard");
-      }
-    } catch (e) {
+    } catch (err) {
       if (username === "") {
         setEmptyInput(true);
       } else {
         setEmptyInput(false);
-        setError(true);
       }
     }
   }
+
+  function handleChange(e) {
+    setUsername(e.target.value);
+  }
+  // async function handleSubmit(e) {
+  //   try {
+  //     setError(false);
+  //     e.preventDefault();
+  //     setUsername(username);
+
+  //     const req = await api.get(
+  //       `/${username}?access_token=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`
+  //     );
+  //     const res = req;
+
+  //     console.log(res);
+
+  //     if (res.status === 200) {
+  //       const dataUser = {
+  //         login: res.data.login,
+  //         name: res.data.name,
+  //         email: res.data.email,
+  //         location: res.data.location,
+  //         company: res.data.company,
+  //         bio: res.data.bio,
+  //         avatar_url: res.data.avatar_url,
+  //         followers_url: res.data.followers_url,
+  //         following_url: res.data.following_url,
+  //         organizations_url: res.data.organizations_url,
+  //         starred_url: res.data.starred_url,
+  //         public_repos: res.data.public_repos,
+  //         public_gists: res.data.public_gists,
+  //         followers: res.data.followers,
+  //         following: res.data.following,
+  //         html_url: res.data.html_url,
+  //       };
+  //       setUserData(dataUser);
+
+  //       history.push("/dashboard");
+  //     }
+  //   } catch (e) {
+  //     if (username === "") {
+  //       setEmptyInput(true);
+  //     } else {
+  //       setEmptyInput(false);
+  //       setError(true);
+  //     }
+  //   }
+  // }
 
   return (
     <div className="container">
@@ -90,7 +87,7 @@ export function Login() {
           type="text"
           placeholder="Usuário"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleChange}
         />
         {emptyInput ? (
           <span className="required-field">Campo Obrigatório</span>

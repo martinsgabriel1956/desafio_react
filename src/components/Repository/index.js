@@ -26,11 +26,11 @@ export function Repository() {
       {repos.map((repo) => (
         <li key={repo.id}>
           <h3>{repo.name}</h3>
-          <p>Desafio React da Luby Software</p>
+          <p>{repo.description}</p>
           <div className="repository-info">
             <div className="stars">
               <img src={Star} alt="estrelas" />
-              <p>32</p>
+              <p>{repo.stargazers_count}</p>
             </div>
             <div className="repository-status">
               <img src={Public} alt="" />

@@ -7,19 +7,21 @@ import Star from "../../assets/star.svg";
 import Private from "../../assets/lock.svg";
 import Public from "../../assets/unlock.svg";
 
+import { api } from "../../services/api";
+
 export function Repository() {
-  const { data } = useContext(UserContext);
-  const { repos_url } = data;
+  const { data} = useContext(UserContext);
+  const { login } = data;
   const [repos, setRepos] = useState([]);
+  const [user, setUser] = useState(localStorage.getItem("@username"));
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(repos_url);
-      const json = await response.json();
-      setRepos(json);
+    async function getRepos() {
+      const res = await api.get(`${user}/repos`);
+      setRepos(res.data);
     }
-    fetchData();
-  }, [repos_url]);
+    getRepos();
+  }, [login]);
   
   return (
     <ul className="repository-container">

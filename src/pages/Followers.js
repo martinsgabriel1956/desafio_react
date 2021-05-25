@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { api } from "../services/api";
+
 import '../styles/pages/Followers.css'
 import ArrowRight from '../assets/arrow-right_2.svg';
 
@@ -13,21 +15,19 @@ export function Followers() {
   const { data } = useContext(UserContext);
   const { login } = data;
   const [followersList, setFollowersList] = useState([]);
+  const [ user, setUser] = useState(localStorage.getItem('@username'))
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.github.com/users/${login}/followers`
-      );
-      const json = await response.json();
-      setFollowersList(json);
+    async function getFollowers() {
+      const res = await api.get(`${user}/followers`);
+      setFollowersList(res.data);
     }
-    fetchData();
+    getFollowers();
   }, [login]);
 
   return (
     <>
-      <Header type="143 Seguidores" />
+      <Header type={`${followersList.length} Seguidores`} />
       <ul>
         {followersList.map(follower => (
           <li key={follower.id} className="follow-container">

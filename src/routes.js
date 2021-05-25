@@ -9,8 +9,6 @@ import { Followings } from './pages/Followings';
 import { UserProfile } from './pages/UserProfile';
 import { UserContextProvider } from './contexts/UserContext';
 
-
-
 export function Routes() {
   return (
     <UserContextProvider>

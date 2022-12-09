@@ -11,14 +11,14 @@ import Save from "../assets/log-in.svg";
 import ArrowLeft from "../assets/arrow-left.svg";
 
 export function UserProfile() {
-  const [data, setData] = useState([]);
-  const { login } = useContext(UserContext);
+  const [data, setData]: any = useState([]);
+  const { login }: any = useContext(UserContext);
 
   const params = useParams();
-  const { username } = params;
+  const { username }: any = params;
 
   useEffect(() => {
-    async function fetchData(username) {
+    async function fetchData(username: any) {
       const response = await fetch(`https://api.github.com/users/${username}`);
       const json = await response.json();
       setData(json);

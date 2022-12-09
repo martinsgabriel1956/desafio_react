@@ -12,7 +12,7 @@ import ArrowRight from "../assets/arrow-right_2.svg";
 import { UserContext } from "../contexts/UserContext";
 
 export function Followings() {
-  const { data } = useContext(UserContext);
+  const { data }: any = useContext(UserContext);
   const { login } = data;
   const [followingList, setFollowingList] = useState([]);
 
@@ -28,7 +28,7 @@ export function Followings() {
     <>
       <Header type={`${followingList.length} Seguindo`} />
       <ul >
-        {followingList.map(following => (
+        {followingList.map((following: any) => (
           <li key={following.id} className="follow-container">
             <img className="avatar" src={following.avatar_url} alt="Usuário" />
             <p>#{following.login}</p>

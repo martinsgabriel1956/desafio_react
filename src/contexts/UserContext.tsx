@@ -1,9 +1,9 @@
-import React, { createContext, useState, useContext, useCallback, useEffect} from "react";
+import React, { createContext, useState, useContext, useCallback, useEffect, ReactNode} from "react";
 import { useHistory } from "react-router-dom";
 
 import { api } from "../services/api";
 
-export const UserContext = createContext();
+export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   
@@ -11,7 +11,7 @@ export function UserContextProvider({ children }) {
   const [error, setError] = useState(false);
   
   const login = useCallback(
-    async function(username) {
+    async function(username: string) {
       try {
         const res = await api.get(`${username}`);
 

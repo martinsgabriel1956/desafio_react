@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, FormEvent } from "react";
 import { useHistory } from "react-router-dom";
 
 import Logo from "../assets/logo.svg";
@@ -12,10 +12,10 @@ export function Login() {
   const [username, setUsername] = useState();
   const [emptyInput, setEmptyInput] = useState(false);
 
-  const { login, setError } = useContext(UserContext);
+  const { login, setError }: any = useContext(UserContext);
   const history = useHistory();
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent) {
     try {
       e.preventDefault();
       setError(false);
@@ -39,9 +39,9 @@ export function Login() {
           type="text"
           placeholder="Usuário"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e: any) => setUsername(e.target.value)}
         />
-        <button type="submit" required className="btn-login">
+        <button type="submit" className="btn-login">
           Entrar
           <img src={ArrowRight} alt="Logo" />
         </button>

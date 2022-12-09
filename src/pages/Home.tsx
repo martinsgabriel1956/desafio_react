@@ -11,7 +11,7 @@ import Logout from '../assets/log-out.svg';
 import { UserContext } from "../contexts/UserContext";
 
 export function Home() {
-  const { data } = useContext(UserContext); 
+  const { data }: any = useContext(UserContext); 
 
   const { login } = data;
 

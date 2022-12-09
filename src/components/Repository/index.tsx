@@ -10,7 +10,7 @@ import Public from "../../assets/unlock.svg";
 import { api } from "../../services/api";
 
 export function Repository() {
-  const { data} = useContext(UserContext);
+  const { data }: any = useContext(UserContext);
   const { login } = data;
   const [repos, setRepos] = useState([]);
   const [user, setUser] = useState(localStorage.getItem("@username"));
@@ -25,7 +25,7 @@ export function Repository() {
   
   return (
     <ul className="repository-container">
-      {repos.map((repo) => (
+      {repos.map((repo: any) => (
         <li key={repo.id}>
           <h3>{repo.name}</h3>
           <p>{repo.description}</p>

@@ -12,7 +12,7 @@ import { Footer } from "../components/Footer";
 import { UserContext } from "../contexts/UserContext";
 
 export function Followers() {
-  const { data } = useContext(UserContext);
+  const { data }: any = useContext(UserContext);
   const { login } = data;
   const [followersList, setFollowersList] = useState([]);
   const [ user, setUser] = useState(localStorage.getItem('@username'))
@@ -29,7 +29,7 @@ export function Followers() {
     <>
       <Header type={`${followersList.length} Seguidores`} />
       <ul>
-        {followersList.map(follower => (
+        {followersList.map((follower: any) => (
           <li key={follower.id} className="follow-container">
             <img className="avatar" src={follower.avatar_url} alt="Usuário" />
             <p>#{follower.login}</p>

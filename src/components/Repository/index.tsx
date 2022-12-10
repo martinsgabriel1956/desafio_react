@@ -8,19 +8,21 @@ import Private from "../../assets/lock.svg";
 import Public from "../../assets/unlock.svg";
 
 import { api } from "../../services/api";
+import { RepoTypes } from "../../interfaces/RepoTypes";
 
 export function Repository() {
-  const { data }: any = useContext(UserContext);
-  const { login } = data;
-  const [repos, setRepos] = useState([]);
+  const { data } = useContext(UserContext);
+  const { login } = data!;
+  const [repos, setRepos] = useState<RepoTypes[]>([]);
   const [user, setUser] = useState(localStorage.getItem("@username"));
 
   useEffect(() => {
-    async function getRepos() {
-      const res = await api.get(`${user}/repos`);
-      setRepos(res.data);
-    }
-    getRepos();
+    (async function getRepos() {
+      const response = await api.get(`${user}/repos`);
+      const data: RepoTypes[] = response.data;
+
+      setRepos(data);
+    })();
   }, [login]);
   
   return (

@@ -1,34 +1,47 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-
-import "../styles/pages/Home.css";
-
-import { Footer } from "../components/Footer";
-
+import { useContext, useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import axios from "axios";
+import { Footer, ProfileInfo } from "../components";
 import { UserContext } from "../contexts/UserContext";
-
+import { DataTypes } from "../interfaces/DataTypes";
 import Save from "../assets/log-in.svg";
 import ArrowLeft from "../assets/arrow-left.svg";
 
-export function UserProfile() {
-  const [data, setData]: any = useState([]);
-  const { login }: any = useContext(UserContext);
+import "../styles/pages/Home.css";
 
+export function UserProfile() {
+  const [data, setData] = useState<DataTypes>({
+    avatar_url: "",
+    bio: "",
+    email: "",
+    followers: 0,
+    following: 0,
+    location: "",
+    login: "",
+    name: "",
+    public_repos: 0
+  });
+
+  const { login } = useContext(UserContext);
   const params = useParams();
+  const history = useHistory();
+
   const { username }: any = params;
 
+  async function fetchData(username: string) {
+    const response = await axios(`https://api.github.com/users/${username}`);
+    const data = response.data;
+
+    setData(data);
+  }
+  
   useEffect(() => {
-    async function fetchData(username: any) {
-      const response = await fetch(`https://api.github.com/users/${username}`);
-      const json = await response.json();
-      setData(json);
-      console.log(response);
-    }
     fetchData(username);
   }, [username]);
 
   function handleClick() {
     login(username);
+    history.push("/dashboard");
   }
 
   return (
@@ -37,39 +50,15 @@ export function UserProfile() {
         <Link to="/dashboard">
           <img src={ArrowLeft} alt="" />
         </Link>
-        <button onChange={handleClick} className="logout">
+        <nav className="nickname">
+          <p>#{username}</p>
+        </nav>
+        <button onClick={handleClick} className="logout">
           <p>Salvar</p>
           <img src={Save} alt="Sair" />
         </button>
       </header>
-      {data && (
-        <main className="bio-container">
-          <div className="user-info">
-            <img src={data.avatar_url} alt="avatar" />
-            <h2>{data.name}</h2>
-            <p>{data.email}</p>
-            <p>{data.location}</p>
-          </div>
-          <div className="statics">
-            <div className="data">
-              <h2>{data.followers}</h2>
-              <p>Seguidores</p>
-            </div>
-            <div className="data">
-              <h2>{data.following}</h2>
-              <p>Seguindo</p>
-            </div>
-            <div className="data">
-              <h2>{data.public_repos}</h2>
-              <p>Repos</p>
-            </div>
-          </div>
-          <div className="bio">
-            <h2>Bio</h2>
-            {data.bio === "" ? <p></p> : <p>{data.bio}</p>}
-          </div>
-        </main>
-      )}
+      <ProfileInfo data={data} />
       <Footer />
     </>
   );

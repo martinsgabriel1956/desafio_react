@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Login } from './pages/Login';
@@ -19,7 +18,7 @@ export function Routes() {
         <Route path="/repositories" component={Repositories} />
         <Route path="/followers" component={Followers} />
         <Route path="/followings" component={Followings} />
-        <Route path="/profile" component={UserProfile} />
+        <Route path="/profile/:username" component={UserProfile} />
       </Switch>
     </BrowserRouter>
     </UserContextProvider>

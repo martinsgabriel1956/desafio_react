@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import "../styles/pages/Home.css";
@@ -11,7 +11,7 @@ import Logout from '../assets/log-out.svg';
 import { UserContext } from "../contexts/UserContext";
 
 export function Home() {
-  const { data } = useContext(UserContext); 
+  const { data } = useContext(UserContext);
 
   const { login } = data;
 

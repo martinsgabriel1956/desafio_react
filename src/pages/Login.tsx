@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useContext, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/logo.svg";
 import ArrowRight from "../assets/arrow-right.svg";
@@ -9,18 +9,18 @@ import "../styles/pages/Login.css";
 import { UserContext } from "../contexts/UserContext";
 
 export function Login() {
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState('');
   const [emptyInput, setEmptyInput] = useState(false);
 
   const { login, setError } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent) {
     try {
       e.preventDefault();
       setError(false);
       login(username);
-      history.push("/dashboard");
+      navigate("home");
     } catch (err) {
       if (username === "") {
         setEmptyInput(true);
@@ -41,7 +41,7 @@ export function Login() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit" required className="btn-login">
+        <button type="submit" className="btn-login">
           Entrar
           <img src={ArrowRight} alt="Logo" />
         </button>

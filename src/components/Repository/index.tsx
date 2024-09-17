@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState} from "react"
+import { useContext, useEffect, useState } from "react"
 
 import "./styles.css";
 import { UserContext } from "../../contexts/UserContext";
@@ -9,20 +9,27 @@ import Public from "../../assets/unlock.svg";
 
 import { api } from "../../services/api";
 
+type Repo = {
+  id: string;
+  name: string;
+  description: string;
+  stargazers_count: number;
+}
+
 export function Repository() {
-  const { data} = useContext(UserContext);
+  const { data } = useContext(UserContext);
   const { login } = data;
-  const [repos, setRepos] = useState([]);
-  const [user, setUser] = useState(localStorage.getItem("@username"));
+  const [repos, setRepos] = useState<Repo[]>([]);
+  const [user] = useState(localStorage.getItem("@username"));
 
   useEffect(() => {
     async function getRepos() {
-      const res = await api.get(`${user}/repos`);
+      const res = await api.get<Repo[]>(`${user}/repos`);
       setRepos(res.data);
     }
     getRepos();
   }, [login]);
-  
+
   return (
     <ul className="repository-container">
       {repos.map((repo) => (

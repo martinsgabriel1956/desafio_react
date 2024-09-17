@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import "../styles/pages/Home.css";
@@ -10,25 +10,39 @@ import { UserContext } from "../contexts/UserContext";
 import Save from "../assets/log-in.svg";
 import ArrowLeft from "../assets/arrow-left.svg";
 
+type User = {
+  name: string;
+  email: string;
+  location: string;
+  avatar_url: string;
+  followers: number;
+  following: number;
+  public_repos: number;
+  bio: string;
+}
+
 export function UserProfile() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({} as User);
   const { login } = useContext(UserContext);
 
   const params = useParams();
   const { username } = params;
 
   useEffect(() => {
-    async function fetchData(username) {
-      const response = await fetch(`https://api.github.com/users/${username}`);
-      const json = await response.json();
-      setData(json);
-      console.log(response);
+    async function fetchData(username: string) {
+      try {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.error(error);
+      }
     }
-    fetchData(username);
+    fetchData(username!);
   }, [username]);
 
   function handleClick() {
-    login(username);
+    login(username!);
   }
 
   return (

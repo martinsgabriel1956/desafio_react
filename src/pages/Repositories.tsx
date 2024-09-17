@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Header } from '../components/Header';
 import { Repository } from '../components/Repository';
 import { Footer } from "../components/Footer";

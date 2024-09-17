@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import './style.css';
 
 import { UserContext } from "../../contexts/UserContext";
 
 export function Bio() {
-  const { data } = useContext(UserContext); 
+  const { data } = useContext(UserContext);
 
   const { name, avatar_url, email, location, followers, following, public_repos, bio } = data;
 

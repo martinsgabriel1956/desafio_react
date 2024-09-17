@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../services/api";
@@ -11,10 +11,16 @@ import ArrowRight from "../assets/arrow-right_2.svg";
 
 import { UserContext } from "../contexts/UserContext";
 
+type Following = {
+  id: number;
+  login: string;
+  avatar_url: string;
+}
+
 export function Followings() {
   const { data } = useContext(UserContext);
   const { login } = data;
-  const [followingList, setFollowingList] = useState([]);
+  const [followingList, setFollowingList] = useState<Following[]>([]);
 
   useEffect(() => {
     async function getFollowing() {

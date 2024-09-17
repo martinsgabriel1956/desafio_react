@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../services/api";
@@ -11,11 +11,17 @@ import { Footer } from "../components/Footer";
 
 import { UserContext } from "../contexts/UserContext";
 
+type Follower = {
+  id: number;
+  login: string;
+  avatar_url: string;
+}
+
 export function Followers() {
   const { data } = useContext(UserContext);
   const { login } = data;
-  const [followersList, setFollowersList] = useState([]);
-  const [ user, setUser] = useState(localStorage.getItem('@username'))
+  const [followersList, setFollowersList] = useState<Follower[]>([]);
+  const [user] = useState(localStorage.getItem('@username'))
 
   useEffect(() => {
     async function getFollowers() {

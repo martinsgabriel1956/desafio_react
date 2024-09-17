@@ -1,22 +1,22 @@
-import React, { createContext, useState, useContext, useCallback, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { createContext, useState, useCallback, useEffect } from "react";
 
 import { api } from "../services/api";
+import { UserContextProviderTypes, UserContextType } from "./types";
 
-export const UserContext = createContext();
+export const UserContext = createContext({} as UserContextType);
 
-export function UserContextProvider({ children }) {
-  
+export function UserContextProvider({ children }: UserContextProviderTypes) {
+
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
-  
+
   const login = useCallback(
-    async function(username) {
+    async function (username: string) {
       try {
         const res = await api.get(`${username}`);
 
         localStorage.setItem('@username', res.data.login);
-        
+
         setData(res.data);
       } catch (err) {
         setError(true);
@@ -27,16 +27,16 @@ export function UserContextProvider({ children }) {
   useEffect(() => {
     async function userLoggedSection() {
       const username = localStorage.getItem('@username');
-      
-      if(username) await login(username);
+
+      if (username) await login(username);
     }
-    
+
     userLoggedSection();
   }, [login])
-  
+
   return (
     <UserContext.Provider
-      value={{ login, data, error, setError}}
+      value={{ login, data, error, setError }}
     >
       {children}
     </UserContext.Provider>

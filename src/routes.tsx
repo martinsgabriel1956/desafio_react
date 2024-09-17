@@ -29,7 +29,7 @@ export const appRoutes = createBrowserRouter([
     element: <Followings />,
   },
   {
-    path: "/profile",
+    path: "/profile/:username",
     element: <UserProfile />,
   },
 ])

@@ -19,11 +19,18 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
 
         setData(res.data);
       } catch (err) {
+        console.error(err);
         setError(true);
       }
     },
     []
   )
+
+  function logout() {
+    localStorage.removeItem('@username');
+    setData({} as User);
+  }
+
   useEffect(() => {
     async function userLoggedSection() {
       const username = localStorage.getItem('@username');
@@ -36,7 +43,7 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
 
   return (
     <UserContext.Provider
-      value={{ login, data, error, setError }}
+      value={{ login, data, error, setError, logout }}
     >
       {children}
     </UserContext.Provider>

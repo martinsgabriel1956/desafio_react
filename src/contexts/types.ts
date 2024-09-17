@@ -17,8 +17,18 @@ export type UserContextType = {
   login: (username: string) => Promise<void>;
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
+  logout: () => void;
+};
+
+export type ThemeContextType = {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
 };
 
 export type UserContextProviderTypes = {
+  children: ReactElement;
+};
+
+export type ThemeContextProviderTypes = {
   children: ReactElement;
 };

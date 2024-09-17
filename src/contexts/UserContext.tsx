@@ -1,13 +1,13 @@
 import { createContext, useState, useCallback, useEffect } from "react";
 
 import { api } from "../services/api";
-import { UserContextProviderTypes, UserContextType } from "./types";
+import { User, UserContextProviderTypes, UserContextType } from "./types";
 
 export const UserContext = createContext({} as UserContextType);
 
 export function UserContextProvider({ children }: UserContextProviderTypes) {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({} as User);
   const [error, setError] = useState(false);
 
   const login = useCallback(

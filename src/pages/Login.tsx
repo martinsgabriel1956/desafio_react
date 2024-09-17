@@ -10,7 +10,7 @@ import { UserContext } from "../contexts/UserContext";
 
 export function Login() {
   const [username, setUsername] = useState('');
-  const [emptyInput, setEmptyInput] = useState(false);
+  const [_, setEmptyInput] = useState(false);
 
   const { login, setError } = useContext(UserContext);
   const navigate = useNavigate();

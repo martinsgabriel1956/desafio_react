@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import "../styles/pages/Home.css";
-
-import { Footer } from "../components/Footer";
+import "../../src/pages/Home/style.scss";
 
 import { UserContext } from "../contexts/UserContext";
 
@@ -84,7 +82,6 @@ export function UserProfile() {
           </div>
         </main>
       )}
-      <Footer />
     </>
   );
 }

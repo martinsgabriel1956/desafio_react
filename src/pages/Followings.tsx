@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../services/api";
@@ -9,7 +9,7 @@ import { Footer } from "../components/Footer";
 import '../styles/pages/Followings.css';
 import ArrowRight from "../assets/arrow-right_2.svg";
 
-import { UserContext } from "../contexts/UserContext";
+import { useUser } from "../@hooks/useUser";
 
 type Following = {
   id: number;
@@ -18,7 +18,7 @@ type Following = {
 }
 
 export function Followings() {
-  const { data } = useContext(UserContext);
+  const { data } = useUser();
   const { login } = data;
   const [followingList, setFollowingList] = useState<Following[]>([]);
 

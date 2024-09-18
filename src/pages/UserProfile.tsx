@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useUser } from "../@hooks/useUser";
 
 import "../../src/pages/Home/style.scss";
-
-import { UserContext } from "../contexts/UserContext";
 
 import Save from "../assets/log-in.svg";
 import ArrowLeft from "../assets/arrow-left.svg";
@@ -21,7 +20,7 @@ type User = {
 
 export function UserProfile() {
   const [data, setData] = useState({} as User);
-  const { login } = useContext(UserContext);
+  const { login } = useUser();
 
   const params = useParams();
   const { username } = params;

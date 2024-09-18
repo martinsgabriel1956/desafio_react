@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { api } from "../services/api";
@@ -9,7 +9,7 @@ import ArrowRight from '../assets/arrow-right_2.svg';
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
-import { UserContext } from "../contexts/UserContext";
+import { useUser } from "../@hooks/useUser";
 
 type Follower = {
   id: number;
@@ -18,7 +18,7 @@ type Follower = {
 }
 
 export function Followers() {
-  const { data } = useContext(UserContext);
+  const { data } = useUser();
   const { login } = data;
   const [followersList, setFollowersList] = useState<Follower[]>([]);
   const [user] = useState(localStorage.getItem('@username'))

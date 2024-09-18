@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import "./styles.css";
-import { UserContext } from "../../contexts/UserContext";
 
 import Star from "../../assets/star.svg";
 import Private from "../../assets/lock.svg";
 import Public from "../../assets/unlock.svg";
 
 import { api } from "../../services/api";
+import { useUser } from "../../@hooks/useUser";
 
 type Repo = {
   id: string;
@@ -17,7 +17,7 @@ type Repo = {
 }
 
 export function Repository() {
-  const { data } = useContext(UserContext);
+  const { data } = useUser();
   const { login } = data;
   const [repos, setRepos] = useState<Repo[]>([]);
   const [user] = useState(localStorage.getItem("@username"));

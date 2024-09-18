@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { useUser } from "../../@hooks/useUser";
 
 export function useBioController() {
-  const { data } = useContext(UserContext);
+  const { data } = useUser();
 
   return {
     data

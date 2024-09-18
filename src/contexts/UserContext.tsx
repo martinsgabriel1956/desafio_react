@@ -35,7 +35,9 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
     async function userLoggedSection() {
       const username = localStorage.getItem('@username');
 
-      if (username) await login(username);
+      if (username) {
+        await login(username);
+      };
     }
 
     userLoggedSection();

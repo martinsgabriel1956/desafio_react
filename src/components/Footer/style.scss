@@ -1,0 +1,36 @@
+@import "../../styles/partials/colors";
+
+.footer-container {
+  background: $white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  border-radius: 10px 20px 0 0;
+  align-items: center;
+  padding: 1rem;
+
+  .tab-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    &>p {
+      color: #969696;
+      font-weight: 600;
+
+      &.active {
+        color: $black;
+      }
+    }
+  }
+
+  &>img {
+    padding-bottom: .25rem;
+    width: 2.1736rem;
+    height: 2.1736rem;
+  }
+}

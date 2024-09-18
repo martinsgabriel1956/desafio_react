@@ -1,30 +1,37 @@
-import { Link } from 'react-router-dom';
+import './style.scss';
 
-import './style.css';
+import { FooterOption } from './components/footer-option';
+import { FollowersIcon, FollowingIcon, GithubIcon, HomeIcon } from '../ui';
 
-import Home from '../../assets/home.svg';
-import Repos from '../../assets/github.svg';
-import Users from '../../assets/users.svg';
+const FooterOptions = [
+  {
+    path: "/profile/home",
+    Icon: HomeIcon,
+    text: "Home"
+  },
+  {
+    path: "/repositories",
+    Icon: GithubIcon,
+    text: "Repos"
+  },
+  {
+    path: "/followers",
+    Icon: FollowersIcon,
+    text: "Seguidores"
+  },
+  {
+    path: "/followings",
+    Icon: FollowingIcon,
+    text: "Seguindo"
+  }
+]
 
 export function Footer() {
   return (
     <div className="footer-container">
-      <Link to="/home" className="tab-buttons">
-        <img src={Home} alt="" />
-        <p>Home</p>
-      </Link>
-      <Link to="/repositories" className="tab-buttons">
-        <img src={Repos} alt="" />
-        <p>Repos</p>
-      </Link>
-      <Link to="/followers" className="tab-buttons">
-        <img src={Users} alt="" />
-        <p>Seguidores</p>
-      </Link>
-      <Link to="/followings" className="tab-buttons">
-        <img src={Users} alt="" />
-        <p>Seguindo</p>
-      </Link>
+      {FooterOptions.map((option) => (
+        <FooterOption path={option.path} Icon={option.Icon} text={option.text} />
+      ))}
     </div>
   );
 }

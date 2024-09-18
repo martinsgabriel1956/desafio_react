@@ -1,10 +1,10 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+import { useUser } from "../../@hooks/useUser";
 
 export function useLoginController() {
   const [username, setUsername] = useState('');
-  const { login, setError, error } = useContext(UserContext);
+  const { login, setError, error } = useUser();
   const navigate = useNavigate();
 
   function getUsername(username: string) {

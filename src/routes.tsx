@@ -6,6 +6,7 @@ import { Repositories } from './pages/Repositories';
 import { Followers } from './pages/Followers';
 import { Followings } from './pages/Followings';
 import { UserProfile } from './pages/UserProfile';
+import { UserLayout } from './layout/UserLayout';
 
 export const appRoutes = createBrowserRouter([
   {
@@ -13,8 +14,18 @@ export const appRoutes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/home",
-    element: <Home />,
+    path: "/profile/",
+    element: <UserLayout />,
+    children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+      {
+        path: ":username",
+        element: <UserProfile />,
+      }
+    ]
   },
   {
     path: "/repositories",

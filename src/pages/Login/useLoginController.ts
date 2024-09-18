@@ -22,7 +22,7 @@ export function useLoginController() {
       }
 
       login(username);
-      navigate("home");
+      navigate("/profile/home");
     } catch (err) {
       console.error(err);
     }

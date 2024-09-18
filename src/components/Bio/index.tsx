@@ -1,11 +1,9 @@
-import { useContext } from 'react';
-import './style.css';
+import './style.scss';
 
-import { UserContext } from "../../contexts/UserContext";
+import { useBioController } from './useBioController';
 
 export function Bio() {
-  const { data } = useContext(UserContext);
-
+  const { data } = useBioController();
   const { name, avatar_url, email, location, followers, following, public_repos, bio } = data;
 
   return (

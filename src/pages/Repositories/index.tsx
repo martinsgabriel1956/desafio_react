@@ -32,7 +32,7 @@ export function Repositories() {
         >
           Proximo
         </button>
-      </div>re
+      </div>
     </Suspense>
   );
 }

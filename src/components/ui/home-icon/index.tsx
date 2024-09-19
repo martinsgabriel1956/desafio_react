@@ -9,7 +9,7 @@ export function HomeIcon() {
       width="34"
       height="34"
       fill="none"
-      stroke={pathname === "/profile/home" ? "#000" : "#969696"}
+      stroke={pathname === "/home" ? "#000" : "#969696"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"

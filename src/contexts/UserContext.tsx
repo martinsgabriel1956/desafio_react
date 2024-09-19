@@ -28,7 +28,7 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
 
   function logout() {
     localStorage.removeItem('@username');
-    queryClient.removeQueries({ 'queryKey': ['user'] })
+    queryClient.removeQueries({ 'queryKey': ['user', 'repos'] })
     localStorage.removeItem('REACT_QUERY_OFFLINE_CACHE');
   }
 

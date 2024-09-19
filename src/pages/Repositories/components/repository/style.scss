@@ -1,0 +1,53 @@
+.repository-container {
+  background: #292929;
+  border-bottom: 2px solid #7070705A;
+  text-decoration: none;
+
+  &>li {
+    border-bottom: 2px solid #7070705A;
+    padding: 2rem 1.5rem;
+  }
+
+  &>li h3 {
+    position: relative;
+
+    &>li h3::before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background: #FFCE00;
+      border-radius: 6px;
+      position: absolute;
+      top: -4px;
+      left: -42px;
+    }
+  }
+
+  &>li>p {
+    padding-top: 0.625rem;
+  }
+
+  .repository-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 0.875rem;
+  }
+
+  .stars {
+    &>img {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+  }
+
+  .stars,
+  .repository-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+  }
+}

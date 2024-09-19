@@ -4,7 +4,7 @@ import { useUser } from "../../@hooks/useUser";
 
 export function useLoginController() {
   const [username, setUsername] = useState('');
-  const { login, setError, error } = useUser();
+  const { setError, error, setUsername: setUsernameContext, login } = useUser();
   const navigate = useNavigate();
 
   function getUsername(username: string) {
@@ -21,8 +21,9 @@ export function useLoginController() {
         return;
       }
 
-      login(username);
-      navigate("/profile/home");
+      setUsernameContext(username);
+      login();
+      navigate("/home");
     } catch (err) {
       console.error(err);
     }

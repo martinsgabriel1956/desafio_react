@@ -4,7 +4,7 @@ import { Header } from "../../components/Header";
 export function OptionLayout() {
   return (
     <>
-      <Header type="" />
+      <Header />
       <Outlet />
     </>
   )

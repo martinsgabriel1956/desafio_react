@@ -39,7 +39,7 @@ export function UserProfile() {
   }, [username]);
 
   function handleClick() {
-    login(username!);
+    login();
   }
 
   return (

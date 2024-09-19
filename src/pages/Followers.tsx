@@ -33,7 +33,7 @@ export function Followers() {
 
   return (
     <>
-      <Header type={`${followersList.length} Seguidores`} />
+      <Header />
       <ul>
         {followersList.map(follower => (
           <li key={follower.id} className="follow-container">

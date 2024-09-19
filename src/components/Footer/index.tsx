@@ -5,7 +5,7 @@ import { FollowersIcon, FollowingIcon, GithubIcon, HomeIcon } from '../ui';
 
 const FooterOptions = [
   {
-    path: "/profile/home",
+    path: "/home",
     Icon: HomeIcon,
     text: "Home"
   },
@@ -29,8 +29,8 @@ const FooterOptions = [
 export function Footer() {
   return (
     <div className="footer-container">
-      {FooterOptions.map((option) => (
-        <FooterOption path={option.path} Icon={option.Icon} text={option.text} />
+      {FooterOptions.map((option, index) => (
+        <FooterOption key={index} path={option.path} Icon={option.Icon} text={option.text} />
       ))}
     </div>
   );

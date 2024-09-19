@@ -10,8 +10,6 @@ type FooterOptionsProps = {
 export function FooterOption({ path, Icon, text }: FooterOptionsProps) {
   const { pathname } = useLocation();
 
-  console.log({ pathname });
-
   return (
     <Link to={path} className="tab-buttons">
       <Icon />

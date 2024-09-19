@@ -2,9 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../@hooks/useUser";
 
 export function useHomeController() {
-  const { data, logout } = useUser();
+  const { logout, data, isFetching } = useUser();
   const navigate = useNavigate();
-  const { login } = data;
 
   function handleLogout() {
     logout();
@@ -12,7 +11,8 @@ export function useHomeController() {
   }
 
   return {
-    login,
-    handleLogout
+    handleLogout,
+    data,
+    isFetching
   }
 }

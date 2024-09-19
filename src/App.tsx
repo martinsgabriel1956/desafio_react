@@ -1,19 +1,33 @@
-import { RouterProvider } from "react-router-dom";
-import { appRoutes } from "./routes";
+import { BrowserRouter } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { UserContextProvider } from "./contexts/UserContext";
 import { ThemeContextProvider } from "./contexts/ThemeContext";
+import { queryClient, persister } from "./services/query-client";
 import './styles/global.scss';
+import { AppRoutes } from "./routes";
 import { ToggleThemeButton } from "./components/ToggleThemeButton";
 
 export function App() {
   return (
     <ThemeContextProvider>
-      <UserContextProvider>
-        <>
-          <RouterProvider router={appRoutes} />
-          <ToggleThemeButton />
-        </>
-      </UserContextProvider>
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{
+          persister,
+          maxAge: 1000 * 60 * 60 * 24,
+        }}
+      >
+        <UserContextProvider>
+          <>
+            <BrowserRouter>
+              <AppRoutes />
+            </BrowserRouter>
+            <ToggleThemeButton />
+          </>
+        </UserContextProvider>
+        <ReactQueryDevtools />
+      </PersistQueryClientProvider>
     </ThemeContextProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { Login } from './pages/Login';
 import { Home } from './pages/Home';
@@ -6,43 +6,23 @@ import { Repositories } from './pages/Repositories';
 import { Followers } from './pages/Followers';
 import { Followings } from './pages/Followings';
 import { UserProfile } from './pages/UserProfile';
-import { UserLayout } from './layout/UserLayout';
+import { DefaultLayout, OptionLayout, UserLayout } from './layout';
 
-export const appRoutes = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/profile/",
-    element: <UserLayout />,
-    children: [
-      {
-        path: "home",
-        element: <Home />,
-      },
-      {
-        path: ":username",
-        element: <UserProfile />,
-      }
-    ]
-  },
-  {
-    path: "/repositories",
-    element: <Repositories />,
-  },
-  {
-    path: "/followers",
-    element: <Followers />,
-  },
-  {
-    path: "/followings",
-    element: <Followings />,
-  },
-  {
-    path: "/profile/:username",
-    element: <UserProfile />,
-  },
-])
-
-
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path="/" element={<UserLayout />}>
+          <Route path="home" element={<Home />} />
+          <Route path=":username" element={<UserProfile />} />
+        </Route>
+        <Route path="/" element={<OptionLayout />}>
+          <Route path="repositories" element={<Repositories />} />
+          <Route path="followers" element={<Followers />} />
+          <Route path="followings" element={<Followings />} />
+        </Route>
+      </Route>
+    </Routes>
+  )
+}

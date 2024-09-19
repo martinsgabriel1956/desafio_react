@@ -1,51 +1,48 @@
-import { createContext, useState, useCallback, useEffect } from "react";
-
+import { createContext, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { api } from "../services/api";
+import { queryClient } from "../services/query-client";
 import { User, UserContextProviderTypes, UserContextType } from "./types";
 
 export const UserContext = createContext({} as UserContextType);
 
 export function UserContextProvider({ children }: UserContextProviderTypes) {
-
-  const [data, setData] = useState({} as User);
   const [error, setError] = useState(false);
 
-  const login = useCallback(
-    async function (username: string) {
-      try {
-        const res = await api.get(`${username}`);
+  const alternativeLogin = async () => {
+    const username = getUsername();
+    const response = await api.get(`${username}`);
+    return response.data;
+  }
 
-        localStorage.setItem('@username', res.data.login);
+  const { data, refetch, isFetching } = useSuspenseQuery<User>({
+    queryKey: ["user"],
+    queryFn: alternativeLogin,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 60 * 24,
+  })
 
-        setData(res.data);
-      } catch (err) {
-        console.error(err);
-        setError(true);
-      }
-    },
-    []
-  )
+  function login() {
+    refetch();
+  }
 
   function logout() {
     localStorage.removeItem('@username');
-    setData({} as User);
+    queryClient.removeQueries({ 'queryKey': ['user'] })
+    localStorage.removeItem('REACT_QUERY_OFFLINE_CACHE');
   }
 
-  useEffect(() => {
-    async function userLoggedSection() {
-      const username = localStorage.getItem('@username');
+  function getUsername() {
+    return localStorage.getItem('@username');
+  }
 
-      if (username) {
-        await login(username);
-      };
-    }
-
-    userLoggedSection();
-  }, [login])
+  function setUsername(username: string) {
+    return localStorage.setItem('@username', username);
+  }
 
   return (
     <UserContext.Provider
-      value={{ login, data, error, setError, logout }}
+      value={{ error, setError, logout, getUsername, setUsername, data, login, isFetching }}
     >
       {children}
     </UserContext.Provider>

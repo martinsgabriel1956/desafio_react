@@ -14,10 +14,13 @@ export type User = {
 
 export type UserContextType = {
   data: User;
-  login: (username: string) => Promise<void>;
+  login: () => void;
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   logout: () => void;
+  getUsername: () => string | null;
+  setUsername: (username: string) => void;
+  isFetching: boolean
 };
 
 export type ThemeContextType = {

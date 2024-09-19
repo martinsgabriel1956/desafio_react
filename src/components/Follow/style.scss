@@ -1,0 +1,49 @@
+.follow-container {
+  padding: 2.5rem 0;
+  background: #292929;
+  border-bottom: 1px solid #7070705A;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #FFCE00;
+    border-radius: 8px;
+
+    position: absolute;
+    left: -1.875rem;
+  }
+
+  &>img {
+    margin: 0 .25rem;
+
+    &:last-child {
+      width: 26px;
+      color: #FFF;
+    }
+  }
+
+  &>p {
+    margin: 0 1rem;
+    font-weight: bold;
+  }
+
+  .avatar {
+    width: 3.75rem;
+    width: 3.75rem;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 375px) {
+  .follow-container {
+    padding: 2.5rem 1rem;
+  }
+}

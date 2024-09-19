@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-
-import "./style.css";
+import { useHeaderController } from "./useHeaderController";
+import "./style.scss";
+import { getHeaderType } from "./utils/get-header-type";
 import ArrowLeft from "../../assets/arrow-left.svg";
 
-export function Header(props: { type: string }) {
+export function Header() {
+  const { type, typeValues } = useHeaderController();
+
   return (
     <div className="header-container">
-      <Link to="/dashboard">
-        <img src={ArrowLeft} alt="" />
+      <Link to="/home">
+        <img src={ArrowLeft} alt="Ícone para voltar para a tela inicial" />
       </Link>
-      <p>{props.type}</p>
+      <p>{getHeaderType({ type, typeValues })}</p>
       <div />
     </div>
   );

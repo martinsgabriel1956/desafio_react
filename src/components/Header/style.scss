@@ -5,13 +5,8 @@
   justify-content: space-between;
 
   padding: 1.5rem 1rem;
-}
 
-.header-container > p {
-  font-weight: bold;
+  &>p {
+    font-weight: bold;
+  }
 }
-
-.header-container > li p {
-  padding-top: .25rem;
-}
-

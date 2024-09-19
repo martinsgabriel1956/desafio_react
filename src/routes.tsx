@@ -6,7 +6,7 @@ import { Repositories } from './pages/Repositories';
 import { Followers } from './pages/Followers';
 import { Followings } from './pages/Followings';
 import { UserProfile } from './pages/UserProfile';
-import { DefaultLayout, OptionLayout, UserLayout } from './layout';
+import { DefaultLayout, OptionLayout, UserLayout } from './layouts';
 
 export function AppRoutes() {
   return (

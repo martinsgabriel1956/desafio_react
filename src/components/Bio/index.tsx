@@ -1,10 +1,9 @@
 import './style.scss';
-
 import { useBioController } from './useBioController';
 
 export function Bio() {
   const { data } = useBioController();
-  const { name, avatar_url, email, location, followers, following, public_repos, bio } = data;
+  const { name, avatar_url, email, location, followers, following, public_repos, bio } = data!;
 
   return (
     <main className="bio-container">

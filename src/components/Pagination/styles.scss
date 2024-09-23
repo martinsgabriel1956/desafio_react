@@ -1,0 +1,39 @@
+@import "../../styles/partials/colors";
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0 0;
+  gap: 0.5rem;
+
+  .previous-page-button,
+  .next-page-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $white;
+
+    width: 1.875rem;
+    height: 1.875rem;
+
+    &:hover {
+      opacity: 0.8;
+      color: $primary;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 0.5;
+        color: $white;
+      }
+    }
+  }
+
+  span {
+    font-weight: bold;
+    color: $white;
+    font-size: 1.125rem;
+  }
+}

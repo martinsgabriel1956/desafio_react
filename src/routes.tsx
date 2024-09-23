@@ -1,11 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-
-import { Login } from './pages/Login';
-import { Home } from './pages/Home';
-import { Repositories } from './pages/Repositories';
-import { Followers } from './pages/Followers';
-import { Followings } from './pages/Followings';
-import { UserProfile } from './pages/UserProfile';
+import { Followers, Followings, Home, Login, Repositories, UserProfile } from './pages';
 import { DefaultLayout, OptionLayout, UserLayout } from './layouts';
 
 export function AppRoutes() {
@@ -15,7 +9,7 @@ export function AppRoutes() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<UserLayout />}>
           <Route path="home" element={<Home />} />
-          <Route path=":username" element={<UserProfile />} />
+          <Route path="profile/:username" element={<UserProfile />} />
         </Route>
         <Route path="/" element={<OptionLayout />}>
           <Route path="repositories" element={<Repositories />} />

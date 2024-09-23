@@ -23,7 +23,12 @@ export function useFollowersController() {
   }
 
   const getFollowers = useCallback(async ({page}: GetFollowersProps) => {
-    const response = await api.get(`${login}/followers?page=${page}`);
+    const response = await api.get(`${login}/followers`, {
+      params: {
+        per_page: 10,
+        page
+      }
+    });
     return response.data;
   }, [login]);
 

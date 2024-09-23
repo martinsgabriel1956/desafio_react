@@ -20,7 +20,8 @@ export type UserContextType = {
   logout: () => void;
   getUsername: () => string | null;
   setUsername: (username: string) => void;
-  isFetching: boolean
+  isFetching: boolean;
+  loginNewUser: (username: string) => void
 };
 
 export type ThemeContextType = {

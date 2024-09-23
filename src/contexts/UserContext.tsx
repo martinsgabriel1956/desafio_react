@@ -26,9 +26,14 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
     refetch();
   }
 
+  function loginNewUser(username: string) {
+    setUsername(username);
+    login();
+  }
+
   function logout() {
     localStorage.removeItem('@username');
-    queryClient.removeQueries({ 'queryKey': ['user', 'repos'] })
+    queryClient.removeQueries();
     localStorage.removeItem('REACT_QUERY_OFFLINE_CACHE');
   }
 
@@ -42,7 +47,7 @@ export function UserContextProvider({ children }: UserContextProviderTypes) {
 
   return (
     <UserContext.Provider
-      value={{ error, setError, logout, getUsername, setUsername, data, login, isFetching }}
+      value={{ error, setError, logout, getUsername, setUsername, data, login, isFetching, loginNewUser }}
     >
       {children}
     </UserContext.Provider>

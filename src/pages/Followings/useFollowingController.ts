@@ -23,7 +23,12 @@ export function useFollowingController() {
   }
 
   const getFollowing = useCallback(async ({page}: GetFollowingProps) => {
-    const response = await api.get(`${login}/following?page=${page}`);
+    const response = await api.get(`${login}/following`, {
+      params: {
+        per_page: 10,
+        page
+      }
+    });
     return response.data;
   }, [login]);
 

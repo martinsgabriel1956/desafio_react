@@ -1,11 +1,13 @@
 import { useFollowingController } from "./useFollowingController";
+import './style.scss';
 import { Follow } from "../../components/Follow";
+import { Pagination } from "../../components/Pagination";
 
 export function Followings() {
   const { following, handleNextPage, handlePreviousPage, page } = useFollowingController();
 
   return (
-    <>
+    <div className="following-container">
       <ul>
         {following?.map(following => (
           <Follow
@@ -17,21 +19,15 @@ export function Followings() {
           />
         ))}
       </ul>
-      <div className="">
-        <button
-          onClick={handlePreviousPage}
-          disabled={page <= 1}
-        >
-          Anterior
-        </button>
-        <span>{page}</span>
-        <button
-          onClick={handleNextPage}
-          disabled={!following}
-        >
-          Proximo
-        </button>
-      </div>
-    </>
+
+      {following && following.length > 0 && (
+        <Pagination
+          page={page}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+          data={following as []}
+        />
+      )}
+    </div>
   );
 }

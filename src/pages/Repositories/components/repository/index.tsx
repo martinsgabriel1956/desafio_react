@@ -10,7 +10,7 @@ interface RepositoryProps {
 
 export function Repository({ repository }: RepositoryProps) {
   return (
-    <li key={repository.id}>
+    <li className="repository-container">
       <h3>{repository.name}</h3>
       <p>{repository.description}</p>
       <div className="repository-info">

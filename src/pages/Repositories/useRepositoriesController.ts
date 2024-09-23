@@ -21,9 +21,13 @@ export function useRepositoriesController() {
       setPage(prevState => (prevState > 1 ? prevState - 1 : prevState));
     }
 
-
     const getRepositories = useCallback(async ({page}: GetRepositoryProps) => {
-      const response = await api.get(`${login}/repos?page=${page}`);
+      const response = await api.get(`${login}/repos`, {
+        params: {
+          page,
+          per_page: 10
+        }
+      });
       return response.data;
     }, [login]);
 

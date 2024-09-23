@@ -1,15 +1,15 @@
-import { Suspense } from 'react';
+import './style.scss';
 import { Repository } from './components/repository';
 import { Repo } from './components/repository/types';
 import { useRepositoriesController } from './useRepositoriesController';
-import { Loading } from '../../components/Loading';
+import { Pagination } from '../../components/Pagination';
 
 export function Repositories() {
   const { repositories, handleNextPage, handlePreviousPage, page } = useRepositoriesController();
 
   return (
-    <Suspense fallback={<Loading />}>
-      <ul className='repository-container'>
+    <div className='repositories-container'>
+      <ul>
         {repositories?.map((repository: Repo) => (
           <Repository
             key={repository.id}
@@ -18,21 +18,16 @@ export function Repositories() {
         ))}
       </ul>
 
-      <div className="">
-        <button
-          onClick={handlePreviousPage}
-          disabled={page <= 1}
-        >
-          Anterior
-        </button>
-        <span>{page}</span>
-        <button
-          onClick={handleNextPage}
-          disabled={!repositories}
-        >
-          Proximo
-        </button>
-      </div>
-    </Suspense>
+      {repositories?.length === 0 && <p>Nenhum repositório encontrado</p>}
+
+      {repositories && repositories.length > 0 && (
+        <Pagination
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+          page={page}
+          data={repositories}
+        />
+      )}
+    </div>
   );
 }
